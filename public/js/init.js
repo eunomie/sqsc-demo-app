@@ -48,6 +48,7 @@ $(document).ready(function() {
   let start, end;
   let stats;
   let sessionResults = [];
+  let params = {};
 
   $('button').bind("click", function() {
     $('button').attr('disabled', 'disabled');
@@ -56,8 +57,14 @@ $(document).ready(function() {
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, 900, 600);
 
+    params.precision = $('input#precision').val();
+    params.stepX = $('input#stepX').val();
+    params.stepY = $('input#stepY').val();
+
     $.ajax({
+      method: 'POST',
       url: '/launch',
+      data: params,
       error: (req, status, error) => {
         $('.error').removeClass('hidden');
         $('.error').text('Remote server not responding');
@@ -112,6 +119,7 @@ $(document).ready(function() {
   function initStats() {
     return {
       startTime: null,
+      precision: null,
       computeTaskCreated: 0,
       computeTaskRemaining: 0,
       computeTime: 0,
@@ -137,6 +145,7 @@ $(document).ready(function() {
     $('table#results tbody').prepend(`
         <tr>
           <td>${new Date(stats.startTime).toLocaleTimeString()}</td>
+          <td>${params.precision}</td>
           <td>${stats.computeTaskCreated}</td>
           <td>${Object.entries(stats.containers).length}</td>
           <td>${stats.computeTime}</td>

@@ -2,8 +2,7 @@
  * Base structure
  */
 /* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 85px; }
+body { }
 
 /*
  * Global add-ons
@@ -89,3 +88,13 @@ body {
 .placeholder img {
   display: inline-block;
   border-radius: 50%; }
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+
+.panel {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}

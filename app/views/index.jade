@@ -4,11 +4,29 @@ block content
 
   .row.vertical-align
     h1.col-sm-6= title
-    button.btn.btn-success.col-sm-3 Launch
+    .col-sm-3
+      button.btn.btn-success.btn-block Launch
   p Mathematical visualization of the 
     a(href="https://en.wikipedia.org/wiki/Mandelbrot_set", target="blank") Mandelbrot set
-
+  
   .alert.alert-danger.error.hidden(role="alert")
+
+  .panel
+    .panel-heading
+      h4.panel-title
+        a.btn.btn-default(data-toggle="collapse", href="#parameters") Change parameters
+    #parameters.panel-collapse.collapse
+      .panel-body
+        .form-inline
+          .form-group
+            label(for="precision") Precision
+            input#precision.form-control(type="number", value="1000")
+          .form-group
+            label(for="stepX") StepX
+            input#stepX.form-control(type="number", value="10")
+          .form-group
+            label(for="stepY") StepY
+            input#stepY.form-control(type="number", value="600")
 
   hr
 
@@ -39,6 +57,7 @@ block content
       thead
         tr
           th Start Time
+          th Precision (max iteration)
           th Tasks
           th Workers
           th Compute time (ms)
